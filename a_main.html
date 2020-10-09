@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dummren's Assets - Главная</title>
+<script>
+
+var assets_names = [];
+var assets = [
+	/*{
+		"title" : "Тест",
+		"image" : "no_image.png",
+		"description" : "Просто тестовый ассет",
+		"link" : "no_image.png",
+		"archive_size" : "хз)))",
+		"creator" : "Dummren4ik_"
+	}*/
+];
+
+function Start(){
+	Search();
+}
+
+function Search(){
+	RemoveAssets();
+	var is_searched = false
+	for(var _i = 0; _i < assets_names.length; _i++){
+		if(assets_names[_i].includes(document.getElementById("search").value.toLowerCase())){
+			AddAsset(assets[_i].title, assets[_i].image, assets[_i].description, assets[_i].link, assets[_i].archive_size, assets[_i].creator);
+			is_searched = true
+		}
+		if(_i == assets_names.length - 1){
+			if(!is_searched){
+				document.getElementById("assets").innerHTML += '<h2 style="font-family: font">По запросу "' + document.getElementById("search").value + '" ничего не найдено</h2>';
+			}
+		}
+	}
+	if(assets_names.length == 0){
+		document.getElementById("assets").innerHTML += '<h2 style="font-family: font">Пусто :(</h2>';
+	}
+}
+
+function AddAsset(_title, _image, _description, _link, _archive_size, _creator){
+	document.getElementById("assets").innerHTML += `<div style="width: 300px; background-color: white; border-radius: 20px 20px 20px 20px; margin: 20px" align="center">
+				<h1 style="font-family: font">` + _title + `</h1>
+				<img src="` + _image + `" style="width: 280px; object-fit: contain">
+				<div style="width: 300px" align="center">
+					<div onclick="alert('` + _creator + `')" style="cursor: pointer; background: linear-gradient(90deg, #000000, #888888); width: 280px; line-height: 50px; border-radius: 10px 10px 10px 10px">
+						<h2 style="color: white; font-family: font">Создатель</h2>
+					</div>
+					<br>
+					<a href="` + _link + `" download>
+						<div style="cursor: pointer; background: linear-gradient(-90deg, #005500, #888888); width: 280px; line-height: 50px; border-radius: 10px 10px 10px 10px">
+							<h2 style="color: white; font-family: font">Скачать архив (` + _archive_size + `)</h2>
+						</div>
+					</a>
+				</div>
+				<br>
+				<h2 style="font-family: font">` + _description + `</h2>
+			</div>`;
+}
+
+function RemoveAssets(){
+	document.getElementById("assets").innerHTML = "";
+}
+
+function ShowMenu(){
+	document.getElementById("menuDialog").show();
+}
+
+</script>
+<style>
+@font-face{
+	font-family: font;
+	src: url(font.otf)
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	position: relative
+}
+</style>
+</head>
+<body style="background-color: #777777" onload="Start()">
+	<div style="width: 100%" align="center">
+		<div style="width: 360px; background-color: #6d916c" align="center">
+			<div sttyle="width: 360px" align="center">
+				<div style="width: 360px; position: fixed; z-index: 1" aling="center">
+					<div style="width: 360px; height: 50px; background: linear-gradient(70deg, #005500, #000055); display: flex; line-height: 50px">
+						<span style="-webkit-text-stroke-color: black; -webkit-text-stroke-width: 3px; font-family: font; font-size: 30px; color: white">Dummren's Assets</span>
+						<div style="display: flex; flex: 1; justify-content: flex-end">
+							<!-- <div onclick="window.open('https://www.donationalerts.com/r/dummrensassets')" style="width: 200px: height: 50px; border-radius: 0px 0px 10px 10px; background: linear-gradient(to bottom left, yellow, orange); margin-left: 10px; margin-right: 10px; cursor: pointer"> -->
+								<!-- <h2 style="font-family: font">Поддержать</h2> -->
+							<!-- </div> -->
+							<!-- <div onclick="window.location = 'add_asset.html'" style="width: 200px: height: 50px; border-radius: 0px 0px 10px 10px; background: linear-gradient(to bottom, #ffffff, #999999); margin-left: 10px; margin-right: 10px; cursor: pointer"> -->
+								<!-- <h2 style="font-family: font">Добавить ассет</h2> -->
+							<!-- </div> -->
+							<!-- <input id="search" style="width: 300px; border: 0; background-color: white; padding-left: 10px; padding-right: 10px; border-radius: 0px 0px 10px 10px; margin-left: 10px; margin-right: 10px; font-family: font" type="search" placeholder="Введите название ассета" value=""> -->
+							<!-- <input onclick="Search()" style="border: 0; background-color: #999999; color: black; padding-left: 10px; padding-right: 10px; cursor: pointer; border-radius: 0px 0px 10px 10px; margin-left: 10px; margin-right: 10px; font-family: font" type="button" value="Найти"> -->
+							<img onclick="ShowMenu()" style="width: 30px; height: 30px; padding: 10px" src="menu.png">
+						</div>
+					</div>
+					<div style="width: 360px; height: 40px; background-color: white; display: flex; flex: 1; justify-content: flex-end">
+						<input id="search" style="width: 250px; border: 0; background-color: white; height: 40px; border-radius: 0px 0px 10px 10px; font-family: font" type="search" placeholder="Введите название ассета" value="">
+						<input onclick="Search()" style="width: 100px; height: 40px; border: 0; background-color: #999999; color: black; cursor: pointer; border-radius: 10px 0px 0px 10px; font-family: font" type="button" value="Найти">
+					</div>
+				<hr size="3em" color="black" noshade>
+				</div>
+				<div style="top: 90px; width: 360px" align="center">
+					<div style="background-color: #6d916c; min-height: 550px">
+						<br>
+						<h1 style="font-family: font">Ассеты</h1>
+						<br>
+						<div id="assets" style="width: 360px" align="center">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="width: 100%; position: fixed; top: 100px">
+			<dialog id="menuDialog" style="border-radius: 10px; z-index: 2">
+				<div style="width: 300px; background: linear-gradient(to bottom right, #008800, #000088); font-family: font">
+					<h1 style="color: white">Меню</h1>
+					<hr noshade size="3em" color="white">
+					<br>
+					<div onclick="window.open('https://www.donationalerts.com/r/dummrensassets')" style="width: 300px: height: 50px; border-radius: 10px; background: linear-gradient(to bottom left, yellow, orange); margin-left: 10px; margin-right: 10px; cursor: pointer">
+						<h2 style="font-family: font">Поддержать</h2>
+					</div>
+					<br>
+					<div onclick="window.location = 'a_add_asset.html'" style="width: 200px: height: 50px; border-radius: 10px; background: linear-gradient(to bottom, #ffffff, #999999); margin-left: 10px; margin-right: 10px; cursor: pointer">
+						<h2 style="font-family: font">Добавить ассет</h2>
+					</div>
+					<br>
+					<div onclick="document.getElementById('menuDialog').close();" style="width: 200px: height: 50px; border-radius: 10px; background: linear-gradient(to bottom, #ffffff, #999999); margin-left: 10px; margin-right: 10px; cursor: pointer">
+						<h2 style="font-family: font">Закрыть</h2>
+					</div>
+				</div>
+			</dialog>
+		</div>
+	</div>
+	
+</body>
+</html>

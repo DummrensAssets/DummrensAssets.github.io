@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dummren's Assets - Добавить ассет</title>
+<script>
+
+function Start(){
+	
+}
+
+function Send(){
+	if(document.getElementById("nickname").value != "" && document.getElementById("nickname").value.trim() != ""){
+		if(document.getElementById("title").value != "" && document.getElementById("title").value.trim() != ""){
+			if(document.getElementById("description").value != "" && document.getElementById("description").value.trim() != ""){
+				window.open("mailto:dummrensassets@gmail.com?subject=Добавление ассета&body=Название: " + document.getElementById("title").value + "%0AНикнейм: " + document.getElementById("nickname").value + "%0AОписание: " + document.getElementById("description").value);
+			}
+			else{
+				alert("Заполните все поля!")
+			}
+		}
+		else{
+			alert("Заполните все поля!")
+		}
+	}
+	else{
+		alert("Заполните все поля!")
+	}
+}
+
+</script>
+<style>
+@font-face{
+	font-family: font;
+	src: url(font.otf)
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	position: relative
+}
+
+input::placeholder{
+	color: #999999
+}
+</style>
+</head>
+<body style="background-color: #777777" onload="Start()">
+	
+	<div align="center" style="width: 100%">
+		<div style="width: 360px; background-color: #6d916c" align="center">
+			<div style="width: 360px; height: 50px; background: linear-gradient(70deg, #005500, #000055); display: flex; line-height: 50px; position: fixed; z-index: 1">
+				<span style="-webkit-text-stroke-color: black; -webkit-text-stroke-width: 3px; font-family: font; font-size: 30px; color: white">Dummren's Assets</span>
+				<div style="display: flex; flex: 1; justify-content: flex-end">
+				</div>
+			</div>
+			<div style="top: 50px; width: 360px; font-family: font" align="center">
+				<div onclick="window.location = 'a_main.html'" style="width: 360px; height: 30px; border-radius: 0px 0px 20px 20px; background: linear-gradient(to bottom, #ffffff, #999999); cursor: pointer">
+					<h2 style="font-family: font">На главную страницу</h2>
+				</div>
+				<br>
+				<h1 style="font-family: font">Добавить ассет</h1>
+				<br>
+				<input id="title" style="font-size: 20px; placeholder-color: black; font-family: font; width: 300px; border-radius: 20px; height: 50px; border-width: 5px; border-color: black; background: linear-gradient(to bottom left, #00ff00, #0000ff); color: white" type="text" placeholder="Введите название ассета" value="">
+				<br>
+				<br>
+				<textarea id="description" style="font-size: 20px; placeholder-color: black; font-family: font; width: 300px; border-radius: 20px; border-width: 5px; border-color: black; background: linear-gradient(to bottom left, #00ff00, #0000ff); color: white" type="text" placeholder="Введите описание ассета" rows="10"></textarea>
+				<br>
+				<br>
+				<input id="nickname" style="font-size: 20px; placeholder-color: black; font-family: font; width: 300px; border-radius: 20px; height: 50px; border-width: 5px; border-color: black; background: linear-gradient(to bottom left, #00ff00, #0000ff); color: white" type="text" placeholder="Введите свой никнейм" value="">
+				<br>
+				<br>
+				<h2 style="font-size: 20px">*Файл с ассетом нужно будет выбирать вручную при отправке на почту</h2>
+				<input onclick="Send()" style="font-size: 20px; placeholder-color: black; font-family: font; width: 300px; border-radius: 20px; height: 50px; border-width: 5px; border-color: black; background: linear-gradient(to bottom left, #333333, #777777); color: white; cursor: pointer" type="button" value="Отправить на почту">
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

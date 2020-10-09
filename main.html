@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dummren's Assets - Главная</title>
+<script>
+
+var assets_names = [];
+var assets = [
+	/*{
+		"title" : "Тест",
+		"image" : "no_image.png",
+		"description" : "Просто тестовый ассет",
+		"link" : "no_image.png",
+		"archive_size" : "хз)))",
+		"creator" : "Dummren4ik_"
+	}*/
+];
+
+function Start(){
+	Search();
+}
+
+function Search(){
+	RemoveAssets();
+	var is_searched = false
+	for(var _i = 0; _i < assets_names.length; _i++){
+		if(assets_names[_i].includes(document.getElementById("search").value.toLowerCase())){
+			AddAsset(assets[_i].title, assets[_i].image, assets[_i].description, assets[_i].link, assets[_i].archive_size, assets[_i].creator);
+			is_searched = true
+		}
+		if(_i == assets_names.length - 1){
+			if(!is_searched){
+				document.getElementById("assets").innerHTML += '<h1 style="font-family: font">По запросу "' + document.getElementById("search").value + '" ничего не найдено</h1>';
+			}
+		}
+	}
+	if(assets_names.length == 0){
+		document.getElementById("assets").innerHTML += '<h2 style="font-family: font">Пусто :(</h2>';
+	}
+}
+
+function AddAsset(_title, _image, _description, _link, _archive_size, _creator){
+	document.getElementById("assets").innerHTML += `<div style="width: 1000px; height: 500px; background-color: white; border-radius: 20px 20px 20px 20px; margin: 20px" align="center">
+				<h1 style="font-family: font">` + _title + `</h1>
+				<img src="` + _image + `" style="width: 350px; object-fit: contain">
+				<div style="display: flex; width: 900px; height: 50px" align="center">
+					<div onclick="alert('` + _creator + `')" style="cursor: pointer; background: linear-gradient(90deg, #000000, #888888); width: 400px; line-height: 50px; border-radius: 10px 10px 10px 10px">
+						<h2 style="color: white; font-family: font">Создатель</h2>
+					</div>
+					<div style="width: 100px"></div>
+					<a href="` + _link + `" download>
+						<div style="cursor: pointer; background: linear-gradient(-90deg, #005500, #888888); width: 400px; line-height: 50px; border-radius: 10px 10px 10px 10px">
+							<h2 style="color: white; font-family: font">Скачать архив (` + _archive_size + `)</h2>
+						</div>
+					</a>
+				</div>
+				<h2 style="font-family: font">` + _description + `</h2>
+			</div>`;
+}
+
+function RemoveAssets(){
+	document.getElementById("assets").innerHTML = "";
+}
+
+</script>
+<style>
+@font-face{
+	font-family: font;
+	src: url(font.otf)
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	position: relative
+}
+</style>
+</head>
+<body style="background-color: #6d916c" onload="Start()">
+	
+	<div style="width: 100%; height: 50px; background: linear-gradient(70deg, #005500, #000055); display: flex; line-height: 50px; position: fixed; z-index: 1">
+		<span style="-webkit-text-stroke-color: black; -webkit-text-stroke-width: 3px; font-family: font; font-size: 40px; color: white">Dummren's Assets</span>
+		<div style="display: flex; flex: 1; justify-content: flex-end">
+			<div onclick="window.open('https://www.donationalerts.com/r/dummrensassets')" style="width: 200px: height: 50px; border-radius: 0px 0px 10px 10px; background: linear-gradient(to bottom left, yellow, orange); margin-left: 10px; margin-right: 10px; cursor: pointer">
+				<h2 style="font-family: font">Поддержать</h2>
+			</div>
+			<div onclick="window.location = 'add_asset.html'" style="width: 200px: height: 50px; border-radius: 0px 0px 10px 10px; background: linear-gradient(to bottom, #ffffff, #999999); margin-left: 10px; margin-right: 10px; cursor: pointer">
+				<h2 style="font-family: font">Добавить ассет</h2>
+			</div>
+			<input id="search" style="width: 300px; border: 0; background-color: white; padding-left: 10px; padding-right: 10px; border-radius: 0px 0px 10px 10px; margin-left: 10px; margin-right: 10px; font-family: font" type="search" placeholder="Введите название ассета" value="">
+			<input onclick="Search()" style="border: 0; background-color: #999999; color: black; padding-left: 10px; padding-right: 10px; cursor: pointer; border-radius: 0px 0px 10px 10px; margin-left: 10px; margin-right: 10px; font-family: font" type="button" value="Найти">
+		</div>
+	</div>
+	<br>
+	<div style="top: 50px; width: 100%" align="center">
+		<h1 style="font-family: font">Ассеты</h1>
+		<br>
+			<div id="assets" style="width: 100%" align="center">
+				
+			</div>
+	</div>
+	
+</body>
+</html>
